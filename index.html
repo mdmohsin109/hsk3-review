@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Read six HSK 3 stories and tap any word to see its pinyin and English meaning.">
+<title>HSK 3 · Word Review</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">汉</div>
+    <div class="brand-text">
+      <h1>HSK 3 · Word Review</h1>
+      <p class="sub"><span id="stat-words">600</span> words · <span id="stat-stories">6</span> stories</p>
+    </div>
+  </div>
+
+  <div class="tools">
+    <button id="t-mark" class="tool toggle" type="button" aria-pressed="true">
+      <span class="tool-label">Highlight</span>
+    </button>
+    <button id="t-pinyin" class="tool toggle" type="button" aria-pressed="false">
+      <span class="tool-label">拼音</span>
+    </button>
+    <button id="t-english" class="tool toggle" type="button" aria-pressed="false">
+      <span class="tool-label">English</span>
+    </button>
+    <div class="sizer" role="group" aria-label="Text size">
+      <button id="fs-dec" class="tool icon" type="button" aria-label="Decrease text size">A−</button>
+      <button id="fs-inc" class="tool icon" type="button" aria-label="Increase text size">A+</button>
+    </div>
+    <button id="t-theme" class="tool icon" type="button" aria-label="Toggle dark mode">◐</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="nav" aria-label="Stories"></aside>
+  <main class="main">
+    <article class="story" id="story"></article>
+  </main>
+</div>
+
+<div id="tip" class="tip" role="tooltip" hidden>
+  <button class="tip-close" id="tip-close" type="button" aria-label="Close">×</button>
+  <div class="tip-head">
+    <span class="tip-hanzi" id="tip-hanzi"></span>
+    <span class="tip-py" id="tip-py"></span>
+  </div>
+  <ul class="tip-senses" id="tip-senses"></ul>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
