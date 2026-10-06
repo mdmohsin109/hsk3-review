@@ -114,9 +114,7 @@
   function countChars(story) {
     var n = 0;
     story.paragraphs.forEach(function (p) {
-      p.forEach(function (sent) {
-        sent.forEach(function (t) { n += /[\u4e00-\u9fff]/.test(t[0]) ? t[0].length : 0; });
-      });
+      p.tokens.forEach(function (t) { n += /[\u4e00-\u9fff]/.test(t[0]) ? t[0].length : 0; });
     });
     return n;
   }
@@ -146,18 +144,15 @@
 
     var text = h('div', 'text');
     if (state.mark) text.classList.add('is-marked');
+    if (state.english) text.classList.add('is-en');
     s.paragraphs.forEach(function (para) {
-      var p = h('p');
-      para.forEach(function (sent) {
-        sent.forEach(function (tok) { p.appendChild(tokenNode(tok)); });
-      });
-      text.appendChild(p);
+      var block = h('div', 'para');
+      var zh = h('p', 'zh');
+      para.tokens.forEach(function (tok) { zh.appendChild(tokenNode(tok)); });
+      block.appendChild(zh);
+      block.appendChild(h('p', 'en', para.english));
+      text.appendChild(block);
     });
-
-    var trans = h('section', 'translation');
-    trans.hidden = !state.english;
-    trans.appendChild(h('h3', null, 'English'));
-    trans.appendChild(h('p', null, s.english));
 
     var hint = h('p', 'hint', HOVER
       ? 'Hover a highlighted word for a quick look, click to keep it open.'
@@ -165,7 +160,6 @@
 
     el.story.appendChild(head);
     el.story.appendChild(text);
-    el.story.appendChild(trans);
     el.story.appendChild(hint);
     el.text = text;
 
@@ -176,9 +170,7 @@
   function countWords(story) {
     var n = 0;
     story.paragraphs.forEach(function (p) {
-      p.forEach(function (sent) {
-        sent.forEach(function (t) { if (t[1]) n++; });
-      });
+      p.tokens.forEach(function (t) { if (t[1]) n++; });
     });
     return n;
   }
@@ -330,9 +322,10 @@
     document.documentElement.dataset.theme = state.theme;
     el.theme.textContent = state.theme === 'dark' ? '◑' : '◐';
     document.documentElement.style.setProperty('--fs', state.size + 'px');
-    if (el.text) el.text.classList.toggle('is-marked', state.mark);
-    var trans = el.story.querySelector('.translation');
-    if (trans) trans.hidden = !state.english;
+    if (el.text) {
+      el.text.classList.toggle('is-marked', state.mark);
+      el.text.classList.toggle('is-en', state.english);
+    }
     savePrefs();
   }
 

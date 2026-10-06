@@ -241,8 +241,23 @@ html[data-theme="dark"] .chip[data-level="intermediate"] { color: #e7b57b; backg
   letter-spacing: .015em;
   color: var(--ink);
 }
-.text p { margin: 0 0 1.1em; }
-.text p:last-child { margin-bottom: 0; }
+.para { margin: 0 0 1.4em; }
+.para:last-child { margin-bottom: 0; }
+.zh { margin: 0; }
+
+/* per-paragraph English, shown directly beneath its Chinese paragraph */
+.en {
+  display: none;
+  margin: .5em 0 0;
+  padding-left: 13px;
+  border-left: 2px solid var(--line);
+  font-family: var(--ui);
+  font-size: .72em;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 68ch;
+}
+.text.is-en .en { display: block; }
 
 /* words -------------------------------------------------------------- */
 
@@ -285,28 +300,7 @@ ruby rt {
 .text.is-marked .w ruby rt { color: color-mix(in srgb, var(--accent) 78%, var(--ink)); }
 .plain ruby rt { color: var(--muted); }
 
-/* translation -------------------------------------------------------- */
-
-.translation {
-  margin-top: 34px;
-  padding-top: 22px;
-  border-top: 1px dashed var(--line);
-}
-.translation h3 {
-  margin: 0 0 10px;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.translation p {
-  margin: 0;
-  font-size: 15.5px;
-  line-height: 1.8;
-  color: var(--ink-soft);
-  max-width: 64ch;
-}
+/* hint --------------------------------------------------------------- */
 
 .hint {
   margin-top: 30px;
