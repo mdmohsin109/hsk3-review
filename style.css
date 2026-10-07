@@ -134,6 +134,8 @@ html[data-theme="dark"] .tool.toggle[aria-pressed="true"] { color: #10231d; }
 
 .tool.icon { padding: 7px 9px; font-family: var(--ui); }
 
+a.tool { text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+
 /* ---------------------------------------------------------------- layout */
 
 .layout { display: flex; align-items: flex-start; }
